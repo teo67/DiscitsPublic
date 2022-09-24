@@ -201,12 +201,12 @@ module.exports = new Command(
                 }, max: 1, time: 15000, errors: ['time'] })).first().content.toLowerCase();
         
                 if(response == 'decline') {
-                    await sent.edit(returnEmbed(message.author, `<@${p.id}> declined the trade... maybe some other time.`, 'Trade Canceled'));
+                    await sent.edit(returnEmbed(message.author, `<@${p.id}> declined the trade... maybe some other time.`, 'Trade cancelled'));
                     return;
                 }
             } catch(e) {
                 console.log(`Trade failed: ${e}`);
-                await sent.edit(returnEmbed(message.author, `<@${p.id}> ran out of time, so the trade has been canceled... maybe some other time.`, 'Trade Canceled'));
+                await sent.edit(returnEmbed(message.author, `<@${p.id}> ran out of time, so the trade has been cancelled... maybe some other time.`, 'Trade cancelled'));
                 return;
             }
         }

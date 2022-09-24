@@ -6,6 +6,7 @@ const itemFilter = require('./itemFilter');
 const targetFilter = require('./targetFilter');
 const returnMoveList = require('../returnMoveList');
 const returnPartyList = require('../returnPartyList');
+const firstDisc = require('../firstDisc');
 const items = require('../../lists+constants/items');
 const tag = require('../tag');
 const trainers = require('../../lists+constants/trainers');
@@ -32,7 +33,9 @@ const execute = async (player, user, userDiscord, other, canCancel, mustSwap) =>
             let body = '';
             if(type == 1) {
                 body += 'Here are the attacks you currently have equipped:\n';
-                body += returnMoveList(user, user.equipped);
+                for(let i = 0; i < 4; i++) {
+                    body += returnMoveList(user.caught[user.equipped].moveSet, i, user.caught[user.equipped].moveSet, user.caught[user.equipped].PPSet) + "\n";
+                }
                 body += '\nPlease respond with the index of the attack you\'d like to use (1, 2, 3, 4)!';
             } else if(type == 2) {
                 body += 'Here is your current party status:\n';
@@ -91,7 +94,7 @@ const execute = async (player, user, userDiscord, other, canCancel, mustSwap) =>
             }
 
             if(targetIndex == 'cancel') {
-                return await getResults(player, user, userDiscord, other, false, mustSwap);
+                return await execute(player, user, userDiscord, other, false, mustSwap);
             }
 
             return [type, index, targetIndex]; // example: [1, 1, -1]

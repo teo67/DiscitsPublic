@@ -15,8 +15,11 @@ module.exports = new Command(
     (message, args, results) => {
         const user = results.user;
         const equipped = results.equipped;
-
-        message.channel.send(returnEmbed(message.author, returnMoveList(user, equipped), 'Here are the moves you have equipped:'));
+        let returning = '';
+        for(let i = 0; i < 4; i++) {
+            returning += returnMoveList(user.caught[equipped].moveSet, i, user.caught[equipped].moveSet, user.caught[equipped].PPSet) + '\n';
+        }
+        message.channel.send(returnEmbed(message.author, returning, 'Here are the moves you have equipped:'));
         return;
     }
 );       

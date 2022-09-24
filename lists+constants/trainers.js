@@ -3109,5 +3109,5 @@ const trainers = [
         }
     )
 ];
-
+//console.log(trainers.length);
 module.exports = trainers;

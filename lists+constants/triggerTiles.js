@@ -12,7 +12,7 @@ const triggerTiles = [
         User.setLocation(user, 'Arena 3');
         User.setCoords(user, 87, 153);
     }),
-    new Trigger([[155, 163], [156, 163]], ['Whoa there! Make sure you equip *Thump* and party your Discit before leaving the station (hint: use \'d!select 1\' to start).'], (user, index) => {
+    new Trigger([[155, 163], [156, 163]], ['Whoa there! Make sure you equip *Thump* and party your Discit before leaving the station (hint: use \'d!list\' to start).'], (user, index) => {
         User.respawn(user);
     }),
     new Trigger([[150, 183], [150, 184]], ['Mom: Get over here!'], (user, index) => {
@@ -231,7 +231,7 @@ const triggerTiles = [
     'Purple: Anyway, the building we\'re in right now is called a *Discit Station*, and you\'ll probably find a bunch of them along your journey.', 
     'Purple: Every Discit Station has clerks at the back, so feel free to talk to them and heal up your Discits anytime.',
     'Purple: In any case, the next step is to *select* your new Discit so that you can modify it and equip attacks.', 
-    'Give it a try! End the dialogue and then save your data with the rightmost button. Then use \'d!select 1\' to select your first Discit.'], (user, index) => { 
+    'Give it a try! End the dialogue and then save your data with the rightmost button. Then use \'d!list\' to select your first Discit.'], (user, index) => { 
     User.blacklistTrigger(user, index);
     User.makeProgress(user);
     }), 

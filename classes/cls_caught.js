@@ -59,7 +59,7 @@ class Caught {
 
             for(let i = 0; i < discits[me._base].moveList.length; i++) {
                 if(discits[me._base].moveList[i][1] == me.level) {
-                    returning += `\n\n${me.nickname} learned ${discits[me._base].moveList[i][0]}! You can use commands such as 'equip' and 'moves' to organize your equipped attacks during battle.`;
+                    returning += `\n\n${me.nickname} learned ${discits[me._base].moveList[i][0]}! You can use commands such as 'allmoves' and 'moves' to organize your equipped attacks before battle.`;
                     me.fullMoves.push(discits[me._base].moveList[i][0]);
                 }
             }

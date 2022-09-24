@@ -18,7 +18,7 @@ const execute = (userA, userB, resultA, participated) => {
             if(userA.equipped == resultA[1] - 1) {
                 returning += `${trainers[userA.index].name} stayed put!`;
             } else {
-                userA.equip(resultA[1] - 1);
+                User.equip(userA, resultA[1] - 1);
                 returning += `${trainers[userA.index].name} switched to ${userA.caught[userA.equipped].nickname}!`;
             }
         } else if(tag(userA) == 'wild') {
@@ -37,11 +37,7 @@ const execute = (userA, userB, resultA, participated) => {
     } else { // resultA[0] == 3
         const theItem = userA.inventory[resultA[1] - 1];
         if(items[theItem].condition(userA, userB, resultA[2] - 1, true)) {
-            if(tag(userA) == 'trainer') {
-                userA.loseItem(theItem);
-            } else {
-                User.loseItem(userA, theItem);
-            }
+            User.loseItem(userA, theItem);
             itemReturned = items[theItem].func(userA, userB, resultA[2] - 1);
             returning += `${(tag(userA) == 'trainer' ? trainers[userA.index].name : `<@${userA._id}>`)} used a ${theItem}!\n${itemReturned[0]}`;
         } else {

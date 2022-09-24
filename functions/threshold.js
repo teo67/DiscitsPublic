@@ -90,6 +90,7 @@ module.exports = async (message, args, options) => {
         }
         return results;
     } catch(e) {
+        console.log(e);
         return Promise.reject(e);
     }
 }

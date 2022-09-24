@@ -13,21 +13,6 @@ class Trainer {
         this.inventory = _trainer.inventory;
         this.amounts = _trainer.amounts;
     }
-
-    equip(index) {
-        this.equipped = index;
-    }
-    
-    loseItem(item) {
-        const index = this.inventory.indexOf(item);
-        if(index != -1) {
-            this.amounts[index]--;
-            if(this.amounts[index] < 1) {
-                this.inventory.splice(index, 1);
-                this.amounts.splice(index, 1);
-            }
-        }
-    }
 }
 
 module.exports = Trainer;

@@ -13,7 +13,7 @@ const initBattle = require('../functions/initBattle');
 const getResponse = async (msg, id) => {
     const response = (await msg.awaitMessageComponent({ filter: interaction => { 
         return interaction.user.id === id;
-    }, max: 1, time: 20000, errors: ['time'], componentType: 'BUTTON' }));
+    }, max: 1, time: 20000, errors: ['time'], componentType: Discord.ComponentType.Button }));
     await response.deferUpdate();
     return response;
 }
@@ -38,18 +38,18 @@ module.exports = new Command(
         }
         const previousReturn = User.move(user, '', triggerTiles);
 
-        const row = new Discord.MessageActionRow().addComponents(
-            new Discord.MessageButton().setCustomId('⬅️').setEmoji('⬅️').setStyle('PRIMARY'),
-            new Discord.MessageButton().setCustomId('⬇️').setEmoji('⬇️').setStyle('PRIMARY'),
-            new Discord.MessageButton().setCustomId('⬆️').setEmoji('⬆️').setStyle('PRIMARY'),
-            new Discord.MessageButton().setCustomId('➡️').setEmoji('➡️').setStyle('PRIMARY')
+        const row = new Discord.ActionRowBuilder().addComponents(
+            new Discord.ButtonBuilder().setCustomId('⬅️').setEmoji('⬅️').setStyle(Discord.ButtonStyle.Primary),
+            new Discord.ButtonBuilder().setCustomId('⬇️').setEmoji('⬇️').setStyle(Discord.ButtonStyle.Primary),
+            new Discord.ButtonBuilder().setCustomId('⬆️').setEmoji('⬆️').setStyle(Discord.ButtonStyle.Primary),
+            new Discord.ButtonBuilder().setCustomId('➡️').setEmoji('➡️').setStyle(Discord.ButtonStyle.Primary)
         );
-        const textRow = new Discord.MessageActionRow().addComponents(
-            new Discord.MessageButton().setCustomId('⬅️').setEmoji('🆗').setStyle('PRIMARY')
+        const textRow = new Discord.ActionRowBuilder().addComponents(
+            new Discord.ButtonBuilder().setCustomId('⬅️').setEmoji('🆗').setStyle(Discord.ButtonStyle.Primary)
         );
-        const firstRow = new Discord.MessageActionRow();
+        const firstRow = new Discord.ActionRowBuilder();
         for(const eachRow of [row, textRow, firstRow]) {
-            eachRow.addComponents(new Discord.MessageButton().setCustomId('☑️').setEmoji('💾').setStyle('SUCCESS'));
+            eachRow.addComponents(new Discord.ButtonBuilder().setCustomId('☑️').setEmoji('💾').setStyle(Discord.ButtonStyle.Success));
         }
 
         const myMap = await message.channel.send(returnEmbed(message.author, 'Note: Make sure your DMs are open before using this command - you might enter combat with wild Discits and/or trainers.\n\n*Use the green check mark reaction to save your data (it\'ll also save automatically once you\'re done).*\n\n**IMPORTANT: If playing on pc, press (Ctrl +) 3 times to get a better view of the map! (recommended)**', 'Press SAVE to continue:', [firstRow]));
@@ -106,7 +106,7 @@ module.exports = new Command(
                             }
                         }
                     }
-                    returned = 1;
+                    returned = 0;
                 } 
 
                 if(returned == 0) {

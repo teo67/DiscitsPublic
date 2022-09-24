@@ -708,5 +708,5 @@ const items = {
         return ['This isn\'t a usable item!', false];
     }, false, 'A key that can be used somewhere in the first arena...', -1)    
 };
-
+//console.log(Object.keys(items).length);
 module.exports = items;

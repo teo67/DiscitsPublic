@@ -1,0 +1,53 @@
+
+//each stat change element should look like this: [who to change, index of the type of stat to change, how many STAGES to change it by (see https://www.ign.com/wikis/pokemon-sun-pokemon-moon/Stat_Modifications#Increases)].
+// stats are (in order): atk, dfns, spec atk, spec dfns, speed, evasiveness, accuracy
+
+//each effect should look like this: [who to effect, name of effect, chance of it happening]. 
+
+/* list of effects:
+
+ - burned (usually firetype)
+ - paralyzed (usually electric)
+ - asleep (no type)
+ - poisoned (usually poison)
+ - frozen (usually water)
+ - confused (usually flying)
+ - leech seed (usually grass)
+ - look at pokemon website for more
+
+*/
+
+// text to print in DMs
+//~50-100 discits in total
+
+//stat totals: 310 --> 420 --> 530 for starters, 255 --> 420 for early catches
+//progression: [1, talked to professor first], [2, chose starter discit], [3, talked to professor for the second time], [4, equipped discit/equipped move], [5, equipped discit/equipped move], [6, talked to professor outside the station]
+// [7, talked to professor outside arena 1], [8, talked to professor near arenam 2], [9 - completed all professor dialogues], [10 - has caught Prizeri]
+
+
+
+ok im rushing this commit since its 11 and i want to sleep
+
+heres what was added:
+ - starting implementing mongodb/mongoose
+     - the models folder has a user model in it, but it isnt actually implemented into reading/writing
+     - register.js has some code for it thats commented out rn
+ - worked on making the event and command process more streamlined
+     - the handlers folder has a command and event handler
+        - command handler parses commands from the folder and puts em in a collection
+        - the event handler parses events from the folder and adds them as listeners for the client (using file names, kinda weird)
+     - all command files now take in (message, args) as input and often derive user from elsewhere
+     - currently working on rewriting the boolean reqs from main.js for each command into the command files themselves
+        - after done with that ill delete the commented code in main thats outdated
+        - STOPPED AT PARTY.JS SO START AT BATTLE.JS IN NEXT SESSION (im going by the order in the if chain in main.js)
+
+next steps:
+1. finish rewriting the booleans from battle-warp
+2. implement writing to the user model in register.js
+3. implement reading for the user model in all files (figure out when to read ofc)
+4. make battle model 
+5. repeat 2 and 3 for the battle model and wherever it gets called
+
+dw about the 877 changes thats because i installed mongoose
+
+AAAAAAAAAAAAAAAAA I WANT TO SLEEEEEEEEPAAAAAAAAAAAQGWHR

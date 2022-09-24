@@ -3,7 +3,7 @@ const client = fundamentals.client;
 const Discord = fundamentals.Discord;
 
 const execute = (author, text, title, components = null) => {
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.EmbedBuilder()
         .setAuthor({ name: `${author.username}`, iconURL: author.avatarURL() })
         .setColor('#ff6060')
         .setDescription(text)
@@ -15,7 +15,7 @@ const execute = (author, text, title, components = null) => {
         .setTimestamp()
         .setFooter({ text: 'Discits', iconURL: client.user.displayAvatarURL() })
         .setTitle(title);
-    let returning = { embeds: [embed] };
+    let returning = { content: "", embeds: [embed.data] };
     if(components) {
         returning.components = components;
     }

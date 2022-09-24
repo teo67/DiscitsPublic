@@ -23,16 +23,16 @@ module.exports = new Command(
             message.channel.send(returnEmbed(message.author, 'Either you already chose a Discit, or you need to talk to the professor first.', 'Error'));
             return;
         }
-        const row = new Discord.MessageActionRow().addComponents(
-            new Discord.MessageButton().setCustomId('Koulit').setEmoji('🟦').setStyle('SECONDARY'),
-            new Discord.MessageButton().setCustomId('Leafid').setEmoji('🟩').setStyle('SECONDARY'),
-            new Discord.MessageButton().setCustomId('Ferenhyde').setEmoji('🟥').setStyle('SECONDARY')
+        const row = new Discord.ActionRowBuilder().addComponents(
+            new Discord.ButtonBuilder().setCustomId('Koulit').setEmoji('🟦').setStyle(Discord.ButtonStyle.Secondary),
+            new Discord.ButtonBuilder().setCustomId('Leafid').setEmoji('🟩').setStyle(Discord.ButtonStyle.Secondary),
+            new Discord.ButtonBuilder().setCustomId('Ferenhyde').setEmoji('🟥').setStyle(Discord.ButtonStyle.Secondary)
         );
         const msg = await message.channel.send(returnEmbed(message.author, 'Ok, it\'s time to choose a Discit. Here are the options:\n\n🟦 **Koulit**, the water-type\n\n🟩 **Leafid**, the grass-type\n\n🟥 **Ferenhyde**, the fire-type\n\nTo make your choice, press the button with color corresponding to your starter\'s type.', 'Tough Decision...', [row]));
         try {
             const response = (await msg.awaitMessageComponent({ filter: interaction => { 
                 return interaction.user.id === message.author.id;
-            }, max: 1, time: 20000, errors: ['time'], componentType: 'BUTTON' }));
+            }, max: 1, time: 20000, errors: ['time'], componentType: Discord.ComponentType.Button }));
             await response.deferUpdate();
     
             User.newCatch(user, new Caught(new CaughtProto(response.customId, 5, [])));
